@@ -17,12 +17,12 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 export function PageLayout() {
   return (
     <PageLayoutWrapper>
-      <HeaderWrapper
+      <Header
         direction="row"
         // @ts-expect-error Not sure why Material UI didn't properly type this.
         component="header"
       >
-        <NavWrapper
+        <Nav
           direction="row"
           spacing={8}
           alignItems="center"
@@ -36,8 +36,8 @@ export function PageLayout() {
             <NavLink to="">Home</NavLink>
             <NavLink to="matches">Matches</NavLink>
           </Stack>
-        </NavWrapper>
-        <ProfileActionsWrapper alignItems="center" direction="row" spacing={3}>
+        </Nav>
+        <ProfileActions alignItems="center" direction="row" spacing={3}>
           <ProfileActionLayout>
             <GBFlagIcon />
             <span>EN</span>
@@ -51,15 +51,15 @@ export function PageLayout() {
             <NotificationsIcon />
           </ProfileActionLayout>
           <ProfileAvatarAction />
-        </ProfileActionsWrapper>
-      </HeaderWrapper>
-      <main>
+        </ProfileActions>
+      </Header>
+      <Main>
         <ErrorBoundary>
           <Suspense fallback={<div>Fetching data...</div>}>
             <Outlet />
           </Suspense>
         </ErrorBoundary>
-      </main>
+      </Main>
     </PageLayoutWrapper>
   );
 }
@@ -97,16 +97,16 @@ const PageLayoutWrapper = styled("div")({
   minHeight: "100vh",
 });
 
-const HeaderWrapper = styled(Stack)(({ theme }) => ({
+const Header = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
 }));
 
-const NavWrapper = styled(Stack)({
+const Nav = styled(Stack)({
   padding: "40px 60px 40px 60px",
   flex: 1,
 });
 
-const ProfileActionsWrapper = styled(Stack)(({ theme }) => ({
+const ProfileActions = styled(Stack)(({ theme }) => ({
   zIndex: 2,
   position: "relative",
   padding: "40px 60px 40px 20px",
@@ -150,3 +150,9 @@ const ProfileActionLayout: FC<{ isEmphasized?: boolean; spacing?: number }> = ({
     </Typography>
   );
 };
+
+const Main = styled("main")(({ theme }) => ({
+  padding: theme.spacing(3),
+  margin: "auto",
+  maxWidth: 1170,
+}));
