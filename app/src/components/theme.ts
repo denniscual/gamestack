@@ -28,5 +28,11 @@ const options: ThemeOptions = {
       contrastText: "#000",
     },
   },
+  shape: {
+    borderRadius: 0,
+  },
+  typography: {
+    fontFamily: ["Space Grotesk", "sans-serif"].join(","),
+  },
 };
 export const appTheme = createTheme(options);
