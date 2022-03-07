@@ -13,7 +13,7 @@ export default class Model<T extends { id: number }> {
     return foundRow ? foundRow : null;
   }
 
-  findByAll(): T[] {
+  findAll(): T[] {
     return this.rows;
   }
 }

@@ -6,12 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 require("./db");
+const tournament_routes_1 = __importDefault(require("./routes/tournament.routes"));
 const app = (0, express_1.default)();
 const corsOptions = {
     origin: '*',
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
+(0, tournament_routes_1.default)(app);
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);

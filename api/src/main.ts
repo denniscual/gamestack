@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import './db';
+import tournamentRoutes from './routes/tournament.routes';
 
 const app = express();
 
@@ -10,6 +11,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
 app.use(express.json());
+
+// API endpoints
+tournamentRoutes(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

@@ -13,7 +13,7 @@ class Model {
         const foundRow = this.rows.find((row) => row.id === id);
         return foundRow ? foundRow : null;
     }
-    findByAll() {
+    findAll() {
         return this.rows;
     }
 }
