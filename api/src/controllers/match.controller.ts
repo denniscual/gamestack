@@ -3,9 +3,6 @@ import { team, tournament } from '../models';
 import { Match } from '../models/types';
 import { PaginatedResults } from '../middleware';
 
-/**
- * This will support different "query paramerters".
- * */
 export const getMatches: RequestHandler = (req, res) => {
   const results = (res as any).paginatedResults as PaginatedResults<Match>;
 
