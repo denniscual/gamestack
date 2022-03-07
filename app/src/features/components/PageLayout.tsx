@@ -37,21 +37,21 @@ export function PageLayout() {
             <NavLink to="matches">Matches</NavLink>
           </Stack>
         </NavWrapper>
-        <ProfileWrapper alignItems="center" direction="row" spacing={3}>
-          <ProfileItemLayout>
+        <ProfileActionsWrapper alignItems="center" direction="row" spacing={3}>
+          <ProfileActionLayout>
             <GBFlagIcon />
             <span>EN</span>
             <KeyboardArrowDownIcon />
-          </ProfileItemLayout>
-          <ProfileItemLayout isEmphasized>
+          </ProfileActionLayout>
+          <ProfileActionLayout isEmphasized>
             <DiamondIcon />
             <span>180</span>
-          </ProfileItemLayout>
-          <ProfileItemLayout>
+          </ProfileActionLayout>
+          <ProfileActionLayout>
             <NotificationsIcon />
-          </ProfileItemLayout>
-          <ProfileAvatarItem />
-        </ProfileWrapper>
+          </ProfileActionLayout>
+          <ProfileAvatarAction />
+        </ProfileActionsWrapper>
       </HeaderWrapper>
       <main>
         <ErrorBoundary>
@@ -64,9 +64,9 @@ export function PageLayout() {
   );
 }
 
-function ProfileAvatarItem() {
+function ProfileAvatarAction() {
   return (
-    <ProfileItemLayout>
+    <ProfileActionLayout>
       <UserProfileIcon />
       <Stack>
         <Typography
@@ -88,7 +88,7 @@ function ProfileAvatarItem() {
         </Typography>
       </Stack>
       <KeyboardArrowDownIcon />
-    </ProfileItemLayout>
+    </ProfileActionLayout>
   );
 }
 
@@ -106,7 +106,7 @@ const NavWrapper = styled(Stack)({
   flex: 1,
 });
 
-const ProfileWrapper = styled(Stack)(({ theme }) => ({
+const ProfileActionsWrapper = styled(Stack)(({ theme }) => ({
   zIndex: 2,
   position: "relative",
   padding: "40px 60px 40px 20px",
@@ -129,7 +129,7 @@ const ProfileWrapper = styled(Stack)(({ theme }) => ({
   },
 }));
 
-const ProfileItemLayout: FC<{ isEmphasized?: boolean; spacing?: number }> = ({
+const ProfileActionLayout: FC<{ isEmphasized?: boolean; spacing?: number }> = ({
   children,
   isEmphasized = false,
   spacing = 1,
