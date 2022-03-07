@@ -1,5 +1,6 @@
 import { httpService } from "./config.service";
 import { Match } from "./types";
+import queryString from "query-string";
 
 export interface GetMatchesResponse {
   data: Match[];
@@ -9,7 +10,16 @@ export interface GetMatchesResponse {
   limit: number;
   totalCount: number;
 }
-export async function getMatches(): Promise<GetMatchesResponse> {
-  const res = await httpService.get("/matches");
+interface GetMatchesVariables {
+  page?: number;
+  limit?: number;
+  q?: string;
+}
+
+export async function getMatches(
+  variables: GetMatchesVariables
+): Promise<GetMatchesResponse> {
+  const query = queryString.stringify(variables);
+  const res = await httpService.get(`/matches?${query}`);
   return res.data;
 }

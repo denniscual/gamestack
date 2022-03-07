@@ -1,9 +1,15 @@
 import { StrictMode } from "react";
 import { ErrorBoundary } from "components";
 import AppProviders from "./AppProviders";
-import { getTournaments } from "api";
 
-getTournaments().then(console.log);
+// TODO:
+// - support query params to the services.
+// - setup dark theme
+// - override colors based in our design.
+// - override font family of MUI
+// - create generic components like button, status.
+// - do our basic routing.
+// - add features.
 
 export default function App() {
   return (

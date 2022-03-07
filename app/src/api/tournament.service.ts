@@ -1,14 +1,6 @@
 import { httpService } from "./config.service";
 import { Tournament } from "./types";
-
-// TODO:
-// - support query params to the services.
-// - setup dark theme
-// - override colors based in our design.
-// - override font family of MUI
-// - create generic components like button, status.
-// - do our basic routing.
-// - add features.
+import queryString from "query-string";
 
 export interface GetTournamentsResponse {
   data: Tournament[];
@@ -25,6 +17,7 @@ interface GetTournamentsVariables {
 export async function getTournaments(
   variables: GetTournamentsVariables = {}
 ): Promise<GetTournamentsResponse> {
-  const res = await httpService.get("/tournaments");
+  const query = queryString.stringify(variables);
+  const res = await httpService.get(`/tournaments?${query}`);
   return res.data;
 }
