@@ -1,8 +1,18 @@
 import { Outlet, Link } from "react-router-dom";
-import { ErrorBoundary, LogoIcon, NavLink, grayColors } from "components";
-import { Suspense } from "react";
-import { Stack } from "@mui/material";
+import {
+  ErrorBoundary,
+  LogoIcon,
+  NavLink,
+  grayColors,
+  GBFlagIcon,
+  UserProfileIcon,
+} from "components";
+import { Suspense, FC } from "react";
+import { Stack, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import DiamondIcon from "@mui/icons-material/Diamond";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 export function PageLayout() {
   return (
@@ -27,7 +37,21 @@ export function PageLayout() {
             <NavLink to="matches">Matches</NavLink>
           </Stack>
         </NavWrapper>
-        <ProfileWrapper alignItems="center" direction="row"></ProfileWrapper>
+        <ProfileWrapper alignItems="center" direction="row" spacing={3}>
+          <ProfileItemLayout>
+            <GBFlagIcon />
+            <span>EN</span>
+            <KeyboardArrowDownIcon />
+          </ProfileItemLayout>
+          <ProfileItemLayout isEmphasized>
+            <DiamondIcon />
+            <span>180</span>
+          </ProfileItemLayout>
+          <ProfileItemLayout>
+            <NotificationsIcon />
+          </ProfileItemLayout>
+          <ProfileAvatarItem />
+        </ProfileWrapper>
       </HeaderWrapper>
       <main>
         <ErrorBoundary>
@@ -37,6 +61,34 @@ export function PageLayout() {
         </ErrorBoundary>
       </main>
     </PageLayoutWrapper>
+  );
+}
+
+function ProfileAvatarItem() {
+  return (
+    <ProfileItemLayout>
+      <UserProfileIcon />
+      <Stack>
+        <Typography
+          variant="body2"
+          component="span"
+          sx={{ fontWeight: "bold" }}
+        >
+          Nick M.
+        </Typography>
+        <Typography
+          variant="caption"
+          component="span"
+          sx={{ fontWeight: 500 }}
+          style={{
+            color: grayColors.secondary,
+          }}
+        >
+          sample@test.com
+        </Typography>
+      </Stack>
+      <KeyboardArrowDownIcon />
+    </ProfileItemLayout>
   );
 }
 
@@ -50,14 +102,14 @@ const HeaderWrapper = styled(Stack)(({ theme }) => ({
 }));
 
 const NavWrapper = styled(Stack)({
-  padding: "40px 70px",
+  padding: "40px 60px 40px 60px",
   flex: 1,
 });
 
 const ProfileWrapper = styled(Stack)(({ theme }) => ({
   zIndex: 2,
   position: "relative",
-  padding: "40px 70px 40px 20px",
+  padding: "40px 60px 40px 20px",
   color: "#fff",
   background: theme.palette.secondary.light,
   // background: theme.sx.. "#192031",
@@ -76,3 +128,25 @@ const ProfileWrapper = styled(Stack)(({ theme }) => ({
     transform: "skew(-30deg, 0deg)",
   },
 }));
+
+const ProfileItemLayout: FC<{ isEmphasized?: boolean; spacing?: number }> = ({
+  children,
+  isEmphasized = false,
+  spacing = 1,
+}) => {
+  return (
+    <Typography
+      alignItems="center"
+      direction="row"
+      spacing={spacing}
+      variant="body1"
+      sx={{ fontWeight: "bold" }}
+      style={{
+        color: isEmphasized ? "#fff" : grayColors.secondary,
+      }}
+      component={Stack}
+    >
+      {children}
+    </Typography>
+  );
+};

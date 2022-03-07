@@ -6,6 +6,8 @@ import { PageLayout } from "./components";
 import Home from "./Home";
 import Matches from "./Matches";
 
+// TODO:
+// - for `NavLink`, we need to move to a separate Component the "active" state logic.
 export default function App() {
   return (
     <StrictMode>
