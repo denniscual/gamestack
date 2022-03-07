@@ -10,3 +10,6 @@ export const queryClient = new QueryClient({
     },
   },
 });
+
+export * from "./tournament.service";
+export * from "./match.service";
