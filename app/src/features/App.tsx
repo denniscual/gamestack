@@ -1,32 +1,22 @@
 import { StrictMode } from "react";
-import { ErrorBoundary, LogoIcon } from "components";
+import { ErrorBoundary } from "components";
 import AppProviders from "./AppProviders";
-import { Paper, Button } from "@mui/material";
-
-// TODO:
-// - override colors based in our design.
-// - override font family of MUI
-// - create generic components like button, status.
-// - do our basic routing.
-// - add features.
+import { Routes, Route } from "react-router-dom";
+import { PageLayout } from "./components";
+import Home from "./Home";
+import Matches from "./Matches";
 
 export default function App() {
   return (
     <StrictMode>
       <ErrorBoundary>
         <AppProviders>
-          <Paper
-            sx={{
-              bgColor: "primary.light",
-            }}
-          >
-            <h1>Hello world</h1>
-            <Button color="primary" variant="outlined">
-              Outlined
-            </Button>
-          </Paper>
-
-          <LogoIcon />
+          <Routes>
+            <Route path="/" element={<PageLayout />}>
+              <Route index element={<Home />} />
+              <Route path="matches" element={<Matches />} />
+            </Route>
+          </Routes>
         </AppProviders>
       </ErrorBoundary>
     </StrictMode>
