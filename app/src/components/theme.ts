@@ -4,6 +4,7 @@ export const grayColors = {
   light: "#FFFFFF0D",
   dark: "#1F2124",
   main: "#283142",
+  secondary: "#a9a9a9",
 };
 
 const options: ThemeOptions = {
