@@ -28,7 +28,14 @@ export interface Match {
     score: number;
     winner: boolean;
     team: ID;
-  };
+  }[];
+}
+
+export interface Team {
+  id: ID;
+  name: string;
+  abbreviation: string;
+  images: Image[];
 }
 
 export interface Tournament {
@@ -37,12 +44,5 @@ export interface Tournament {
   short_title: string;
   tier: number;
   links: Link;
-  images: Image[];
-}
-
-export interface Team {
-  id: ID;
-  name: string;
-  abbreviation: string;
   images: Image[];
 }

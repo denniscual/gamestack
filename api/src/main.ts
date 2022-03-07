@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import './db';
 import tournamentRoutes from './routes/tournament.routes';
+import matchRoutes from './routes/match.routes';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // API endpoints
 tournamentRoutes(app);
+matchRoutes(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
