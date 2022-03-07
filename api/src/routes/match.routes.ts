@@ -6,7 +6,8 @@ import { match } from '../models';
 export default function routes(app: Express) {
   app.get(
     '/api/matches',
-    middleware.createPaginateResultsMiddleware(match),
+    middleware.createFilterMatchesMiddleware(match),
+    middleware.createPaginateResultsMiddleware(),
     matchController.getMatches,
   );
 }

@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTournaments = void 0;
-const models_1 = require("../models");
 const getTournaments = (req, res) => {
-    const tournaments = models_1.tournament.findAll();
-    res.send(tournaments);
+    const results = res.paginatedResults;
+    res.send(results);
 };
 exports.getTournaments = getTournaments;
 //# sourceMappingURL=tournament.controller.js.map
