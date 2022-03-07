@@ -1,3 +1,8 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, ThemeOptions } from "@mui/material/styles";
 
-export const appTheme = createTheme();
+const options: ThemeOptions = {
+  palette: {
+    mode: "dark",
+  },
+};
+export const appTheme = createTheme(options);

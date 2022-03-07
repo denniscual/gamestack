@@ -1,10 +1,8 @@
 import { StrictMode } from "react";
-import { ErrorBoundary } from "components";
+import { ErrorBoundary, LogoIcon } from "components";
 import AppProviders from "./AppProviders";
 
 // TODO:
-// - support query params to the services.
-// - setup dark theme
 // - override colors based in our design.
 // - override font family of MUI
 // - create generic components like button, status.
@@ -17,6 +15,7 @@ export default function App() {
       <ErrorBoundary>
         <AppProviders>
           <h1>Hello world</h1>
+          <LogoIcon />
         </AppProviders>
       </ErrorBoundary>
     </StrictMode>

@@ -1,0 +1,10 @@
+export { ReactComponent as LogoIcon } from "./logo.svg";
+export { ReactComponent as BetLogoIcon } from "./bet-logo.svg";
+export { ReactComponent as DiamonIcon } from "./diamond.svg";
+export { ReactComponent as GBFlagIcon } from "./GB.svg";
+export { ReactComponent as NotificationIcon } from "./notification.svg";
+export { ReactComponent as StarIcon } from "./star.svg";
+export { ReactComponent as TeamLogoIcon } from "./team-logo.svg";
+export { ReactComponent as ThumbsDownIcon } from "./thumbs-down.svg";
+export { ReactComponent as TournamentLogoIcon } from "./tournament-logo.svg";
+export { ReactComponent as UserProfileIcon } from "./user-profile.svg";
