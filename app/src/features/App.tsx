@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { ErrorBoundary, LogoIcon } from "components";
 import AppProviders from "./AppProviders";
+import { Paper, Button } from "@mui/material";
 
 // TODO:
 // - override colors based in our design.
@@ -14,7 +15,17 @@ export default function App() {
     <StrictMode>
       <ErrorBoundary>
         <AppProviders>
-          <h1>Hello world</h1>
+          <Paper
+            sx={{
+              bgColor: "primary.light",
+            }}
+          >
+            <h1>Hello world</h1>
+            <Button color="primary" variant="outlined">
+              Outlined
+            </Button>
+          </Paper>
+
           <LogoIcon />
         </AppProviders>
       </ErrorBoundary>
