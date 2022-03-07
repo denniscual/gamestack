@@ -20,8 +20,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const tournamentController = __importStar(require("../controllers/tournament.controller"));
+const middleware = __importStar(require("../middleware"));
+const models_1 = require("../models");
 function routes(app) {
-    app.get('/api/tournaments', tournamentController.getTournaments);
+    app.get('/api/tournaments', middleware.createPaginatedResultsMiddleware(models_1.tournament), tournamentController.getTournaments);
 }
 exports.default = routes;
 //# sourceMappingURL=tournament.routes.js.map

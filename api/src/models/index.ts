@@ -8,6 +8,8 @@ import { Match, Tournament, Team } from './types';
  * - tournament
  * */
 
-export const match = new Model<Match>('matches');
-export const tournament = new Model<Tournament>('tournaments');
-export const team = new Model<Team>('teams');
+const match = new Model<Match>('matches');
+const tournament = new Model<Tournament>('tournaments');
+const team = new Model<Team>('teams');
+
+export { Model, match, tournament, team };

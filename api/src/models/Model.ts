@@ -1,6 +1,6 @@
 import db from '../db';
 
-export default class Model<T extends { id: number }> {
+export default class Model<T extends { id: number } = { id: number }> {
   rows: T[] = [];
 
   constructor(collectionName: string) {
