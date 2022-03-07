@@ -1,4 +1,5 @@
 import Model from './Model';
+import { Match, Tournament, Team } from './types';
 
 /**
  * Models:
@@ -7,6 +8,6 @@ import Model from './Model';
  * - tournament
  * */
 
-export const tournament = new Model([]);
-export const participant = new Model([]);
-export const match = new Model([]);
+export const match = new Model<Match>('matches');
+export const tournament = new Model<Tournament>('tournaments');
+export const team = new Model<Team>('teams');

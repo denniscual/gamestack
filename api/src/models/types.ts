@@ -23,7 +23,12 @@ export interface Match {
   end: string;
   streamed: boolean;
   tournament: ID;
-  participants: ID[];
+  participants: {
+    seed: number;
+    score: number;
+    winner: boolean;
+    team: ID;
+  };
 }
 
 export interface Tournament {
@@ -33,13 +38,6 @@ export interface Tournament {
   tier: number;
   links: Link;
   images: Image[];
-}
-
-export interface Participant {
-  seed: number;
-  score: number;
-  winner: boolean;
-  team: ID;
 }
 
 export interface Team {
