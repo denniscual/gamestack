@@ -1,15 +1,16 @@
 import { RequestHandler } from 'express';
 import { Model } from '../models';
 
-export interface PaginatedResults {
+export interface PaginatedResults<T = any> {
   hasNext: boolean;
   hasPrev: boolean;
-  data: any[];
+  data: T[];
   page: number;
   limit: number;
+  totalCount: number;
 }
 
-export function createPaginatedResultsMiddleware(model: Model) {
+export function createPaginateResultsMiddleware(model: Model) {
   const handler: RequestHandler<
     any,
     any,
@@ -23,15 +24,16 @@ export function createPaginatedResultsMiddleware(model: Model) {
     const startIndex = (pageNumber - 1) * pageLimit;
     const endIndex = pageNumber * pageLimit;
 
+    const rows = model.findAll();
+
     const results: PaginatedResults = {
       hasNext: false,
       hasPrev: false,
       data: [],
       page: pageNumber,
       limit: pageLimit,
+      totalCount: rows.length,
     };
-
-    const rows = model.findAll();
 
     if (endIndex < rows.length) {
       results.hasNext = true;

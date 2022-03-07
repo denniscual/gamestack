@@ -23,7 +23,7 @@ const matchController = __importStar(require("../controllers/match.controller"))
 const middleware = __importStar(require("../middleware"));
 const models_1 = require("../models");
 function routes(app) {
-    app.get('/api/matches', middleware.createPaginatedResultsMiddleware(models_1.match), matchController.getMatches);
+    app.get('/api/matches', middleware.createPaginateResultsMiddleware(models_1.match), matchController.getMatches);
 }
 exports.default = routes;
 //# sourceMappingURL=match.routes.js.map

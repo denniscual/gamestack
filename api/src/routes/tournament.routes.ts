@@ -6,7 +6,7 @@ import { tournament } from '../models';
 export default function routes(app: Express) {
   app.get(
     '/api/tournaments',
-    middleware.createPaginatedResultsMiddleware(tournament),
+    middleware.createPaginateResultsMiddleware(tournament),
     tournamentController.getTournaments,
   );
 }

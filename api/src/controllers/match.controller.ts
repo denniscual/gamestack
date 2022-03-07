@@ -1,13 +1,15 @@
 import { RequestHandler } from 'express';
-import { match, team, tournament } from '../models';
+import { team, tournament } from '../models';
+import { Match } from '../models/types';
+import { PaginatedResults } from '../middleware';
 
 /**
  * This will support different "query paramerters".
  * */
 export const getMatches: RequestHandler = (req, res) => {
-  const matches = match.findAll();
+  const results = (res as any).paginatedResults as PaginatedResults<Match>;
 
-  const updatedMatches = matches.map((match) => {
+  const updatedMatches = results.data.map((match) => {
     const participantsWithTeam = match.participants.map((participant) => {
       return {
         ...participant,
@@ -21,5 +23,8 @@ export const getMatches: RequestHandler = (req, res) => {
     };
   });
 
-  res.send(updatedMatches);
+  res.send({
+    ...results,
+    data: updatedMatches,
+  });
 };
