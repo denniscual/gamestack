@@ -80,7 +80,7 @@ export default function MatchList({ tournamentId }: MatchListProps) {
               alignItems="center"
               spacing={3}
               style={{
-                width: "80%",
+                width: "85%",
               }}
             >
               <MuiGrid item md={1}>
@@ -100,12 +100,12 @@ export default function MatchList({ tournamentId }: MatchListProps) {
                   </div>
                 </div>
               </MuiGrid>
-              <MuiGrid item md={2}>
+              <MuiGrid item md={3}>
                 <Typography variant="body2" style={{ color: "#A9A9A9" }}>
                   {match.tournament.title}
                 </Typography>
               </MuiGrid>
-              <MuiGrid item md={7}>
+              <MuiGrid item md={6}>
                 <MatchScore participants={match.participants} />
               </MuiGrid>
             </MuiGrid>
@@ -128,44 +128,60 @@ function MatchScore({ participants }: MatchScoreProps) {
   const [leftParticipant, rightParticipant] = participants;
 
   return (
-    <Stack direction="row" alignItems="center" gap={2}>
-      <TeamInfo
-        imageUrl={leftParticipant.team.images[0]?.url}
-        name={leftParticipant.team.name}
-      />
-      <Typography
-        variant="body2"
-        sx={{
-          fontSize: "h5.fontSize",
-          fontWeight: 700,
-        }}
-      >
-        2
-      </Typography>
-      <Typography
-        variant="body2"
-        sx={{
-          fontSize: "h5.fontSize",
-          fontWeight: 700,
-        }}
-      >
-        vs
-      </Typography>
-      <Typography
-        variant="body2"
-        sx={{
-          fontSize: "h5.fontSize",
-          fontWeight: 700,
-        }}
-      >
-        2
-      </Typography>
-      <TeamInfo
-        isReverse
-        imageUrl={rightParticipant.team.images[0]?.url}
-        name={rightParticipant.team.name}
-      />
-    </Stack>
+    <MuiGrid spacing={2} container alignItems="center">
+      <MuiGrid item md={3}>
+        <TeamInfo
+          imageUrl={leftParticipant.team.images[0]?.url}
+          name={leftParticipant.team.name}
+        />
+      </MuiGrid>
+
+      <MuiGrid item md={2}>
+        <Typography
+          variant="body2"
+          sx={{
+            fontSize: "h5.fontSize",
+            fontWeight: 700,
+          }}
+          align="center"
+        >
+          {leftParticipant.score != null ? leftParticipant.score : "-"}
+        </Typography>
+      </MuiGrid>
+
+      <MuiGrid item md={2}>
+        <Typography
+          variant="body2"
+          sx={{
+            fontSize: "h5.fontSize",
+            fontWeight: 700,
+          }}
+          align="center"
+        >
+          vs
+        </Typography>
+      </MuiGrid>
+
+      <MuiGrid item md={2}>
+        <Typography
+          variant="body2"
+          sx={{
+            fontSize: "h5.fontSize",
+            fontWeight: 700,
+          }}
+          align="center"
+        >
+          {rightParticipant.score != null ? rightParticipant.score : "-"}
+        </Typography>
+      </MuiGrid>
+      <MuiGrid item md={3}>
+        <TeamInfo
+          isReverse
+          imageUrl={rightParticipant.team.images[0]?.url}
+          name={rightParticipant.team.name}
+        />
+      </MuiGrid>
+    </MuiGrid>
   );
 }
 
