@@ -56,7 +56,7 @@ export default function FilterTournaments({
             fontWeight: "bold",
           }}
         >
-          All Tournaments
+          All {!onlyIcon && "Tournaments"}
         </Typography>
       </Button>
       {data.data.map((tournament) => (
