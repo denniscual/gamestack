@@ -3,7 +3,6 @@ import {
   GetMatchesResponse,
   GetMatchesVariables,
   Participant,
-  Image,
 } from "api";
 import { useQuery } from "react-query";
 import { Grid, Stack, Avatar, Typography } from "@mui/material";
