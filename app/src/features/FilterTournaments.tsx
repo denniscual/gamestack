@@ -1,4 +1,4 @@
-import { Stack, Typography, styled, Avatar, Tooltip } from "@mui/material";
+import { Stack, Typography, styled, Avatar } from "@mui/material";
 import { Button } from "components";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useQuery } from "react-query";
@@ -40,7 +40,7 @@ export default function FilterTournaments({
   };
 
   function isMatched(_value: ValueType) {
-    return value === _value;
+    return value === String(_value);
   }
 
   return (
@@ -60,32 +60,31 @@ export default function FilterTournaments({
         </Typography>
       </Button>
       {data.data.map((tournament) => (
-        <Tooltip key={tournament.id} title={tournament.title}>
-          <Button
-            onClick={createChangeHandler(tournament.id)}
-            style={isMatched(tournament.id) ? buttonStyles : undefined}
-          >
-            <Avatar
-              sx={{ width: 32, height: 32 }}
-              src={tournament.images[0].url}
-              alt={tournament.title}
-              style={{
-                marginRight: 6,
+        <Button
+          key={tournament.id}
+          onClick={createChangeHandler(tournament.id)}
+          style={isMatched(tournament.id) ? buttonStyles : undefined}
+        >
+          <Avatar
+            sx={{ width: 32, height: 32 }}
+            src={tournament.images[0].url}
+            alt={tournament.title}
+            style={{
+              marginRight: 6,
+            }}
+          />
+          {!onlyIcon && (
+            <Typography
+              component="span"
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
               }}
-            />
-            {!onlyIcon && (
-              <Typography
-                component="span"
-                variant="body1"
-                sx={{
-                  fontWeight: "bold",
-                }}
-              >
-                {tournament.short_title}
-              </Typography>
-            )}
-          </Button>
-        </Tooltip>
+            >
+              {tournament.short_title}
+            </Typography>
+          )}
+        </Button>
       ))}
       <Button>
         <MoreHorizIcon />

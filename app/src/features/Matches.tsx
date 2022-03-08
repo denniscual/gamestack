@@ -1,10 +1,15 @@
 import { Stack, Typography } from "@mui/material";
 import FilterTournaments, { ValueType } from "./FilterTournaments";
 import { Spinner } from "components";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export default function Matches() {
-  const [activeTournament, setActiveTournament] = useState<ValueType>("ALL");
+  const [searchParams, setSearchParams] = useSearchParams({
+    tournament: "ALL",
+  }) as any;
+
+  console.log(searchParams.get("tournament"));
   return (
     <Stack gap={3}>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -19,8 +24,8 @@ export default function Matches() {
         </Typography>
         <Suspense fallback={<Spinner />}>
           <FilterTournaments
-            value={activeTournament}
-            onChange={setActiveTournament}
+            value={searchParams.get("tournament")}
+            onChange={(val) => setSearchParams({ tournament: val })}
           />
         </Suspense>
       </Stack>
