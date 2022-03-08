@@ -25,7 +25,10 @@ export default function FilterTournaments({
 }: FilterTournamentsProps) {
   const data = useQuery<GetTournamentsResponse, Error, GetTournamentsVariables>(
     ["tournaments", limit],
-    () => getTournaments({ page: 1, limit })
+    () => getTournaments({ page: 1, limit }),
+    {
+      suspense: true,
+    }
   ).data as GetTournamentsResponse;
 
   function createChangeHandler(value: ValueType) {

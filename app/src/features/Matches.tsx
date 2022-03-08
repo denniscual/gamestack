@@ -52,9 +52,7 @@ export default function Matches() {
             width: "100%",
           }}
         >
-          <Suspense fallback={<Spinner />}>
-            <MatchList tournamentId={tournamentId} />
-          </Suspense>
+          <MatchList tournamentId={tournamentId} />
         </div>
       </Stack>
     </Stack>

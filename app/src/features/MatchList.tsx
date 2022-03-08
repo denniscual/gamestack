@@ -1,37 +1,72 @@
-import {
-  getMatches,
-  GetMatchesResponse,
-  GetMatchesVariables,
-  Participant,
-} from "api";
-import { useQuery } from "react-query";
-import { Grid, Stack, Avatar, Typography } from "@mui/material";
-import { Chip, TeamLogoIcon } from "components";
+import { getMatches, Participant, Match } from "api";
+import { useInfiniteQuery } from "react-query";
+import { Grid as MuiGrid, Stack, Avatar, Typography } from "@mui/material";
+import { Chip, TeamLogoIcon, Spinner } from "components";
 import moment from "moment";
+import { useRef, useCallback } from "react";
+
+const LIMIT = 10;
 
 interface MatchListProps {
   tournamentId?: string;
 }
 export default function MatchList({ tournamentId }: MatchListProps) {
-  const queryVariables = {
-    page: 1,
-    limit: 10,
-    q: tournamentId !== "ALL" ? `tournament:${tournamentId}` : undefined,
-  };
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+    useInfiniteQuery(
+      ["matches", tournamentId],
+      ({ pageParam }) => {
+        return getMatches({
+          page: pageParam ?? 1,
+          limit: LIMIT,
+          q: tournamentId !== "ALL" ? `tournament:${tournamentId}` : undefined,
+        });
+      },
+      {
+        getNextPageParam: (lastPage) => {
+          if (lastPage.hasNext) {
+            return lastPage.page + 1;
+          }
+        },
+      }
+    );
 
-  const data = useQuery<GetMatchesResponse, Error, GetMatchesVariables>(
-    ["matches", tournamentId],
-    () => getMatches(queryVariables)
-  ).data as GetMatchesResponse;
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastMatchElementRef = useCallback(
+    (node: Element) => {
+      if (status === "loading") {
+        return;
+      }
 
-  console.log({ data });
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          fetchNextPage();
+        }
+      });
+
+      if (node) {
+        observer.current.observe(node);
+      }
+    },
+    [status, fetchNextPage]
+  );
+
+  if (status === "loading") return <Spinner />;
+
+  const matches: Match[] =
+    data?.pages.reduce((acc, page) => {
+      // @ts-ignore
+      return acc.concat(...page.data);
+    }, []) ?? [];
 
   return (
     <Stack gap={2}>
-      {data.data.map((match) => {
+      {matches.map((match, idx) => {
         return (
           <Stack
             key={match.id}
+            ref={idx === matches.length - 1 ? lastMatchElementRef : null}
             direction="row"
             justifyContent="space-between"
             alignItems="center"
@@ -40,7 +75,7 @@ export default function MatchList({ tournamentId }: MatchListProps) {
               backgroundColor: "#FFFFFF0D",
             }}
           >
-            <Grid
+            <MuiGrid
               container
               alignItems="center"
               spacing={3}
@@ -48,14 +83,14 @@ export default function MatchList({ tournamentId }: MatchListProps) {
                 width: "80%",
               }}
             >
-              <Grid item md={1}>
+              <MuiGrid item md={1}>
                 <Avatar
                   sx={{ width: 36, height: 36 }}
                   src={match.tournament.images[0].url}
                   alt={match.tournament.title}
                 />
-              </Grid>
-              <Grid item md={2}>
+              </MuiGrid>
+              <MuiGrid item md={2}>
                 <div>
                   <Typography variant="caption" style={{ color: "#A9A9A9" }}>
                     {moment(match.start).format("MMMM Do, h:mm a")}
@@ -64,20 +99,24 @@ export default function MatchList({ tournamentId }: MatchListProps) {
                     <Chip label="Live" />
                   </div>
                 </div>
-              </Grid>
-              <Grid item md={2}>
+              </MuiGrid>
+              <MuiGrid item md={2}>
                 <Typography variant="body2" style={{ color: "#A9A9A9" }}>
                   {match.tournament.title}
                 </Typography>
-              </Grid>
-              <Grid item md={7}>
+              </MuiGrid>
+              <MuiGrid item md={7}>
                 <MatchScore participants={match.participants} />
-              </Grid>
-            </Grid>
+              </MuiGrid>
+            </MuiGrid>
             <div>action buttons</div>
           </Stack>
         );
       })}
+      {isFetchingNextPage && <Spinner />}
+      {!hasNextPage && matches.length > LIMIT && (
+        <Typography align="center">No more data to load.</Typography>
+      )}
     </Stack>
   );
 }
