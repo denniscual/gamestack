@@ -1,5 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import FilterTournaments from "./FilterTournaments";
+import { Spinner } from "components";
 
 export default function Matches() {
   return (
@@ -21,7 +22,9 @@ export default function Matches() {
           <div>Tournament filter action items</div>
           <div>Filter action items</div>
         </div>
-        <div>Matches list</div>
+        <div>
+          <Spinner />
+        </div>
       </div>
     </Stack>
   );
