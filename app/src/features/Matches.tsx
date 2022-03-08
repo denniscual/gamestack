@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import FilterTournaments, { ValueType } from "./FilterTournaments";
+import FilterTournaments from "./FilterTournaments";
 import { Spinner } from "components";
 import { Suspense } from "react";
 import { useSearchParams } from "react-router-dom";

@@ -28,7 +28,7 @@ const useButtonStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "8px 16px",
+    padding: "6px 14px",
     backgroundColor: "transparent",
     color: "#fff",
     cursor: "pointer",
