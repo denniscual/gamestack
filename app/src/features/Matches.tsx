@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import { Button } from "components";
+import FilterTournaments from "./FilterTournaments";
 
 export default function Matches() {
   return (
@@ -14,41 +14,7 @@ export default function Matches() {
         >
           Live In-Play
         </Typography>
-        <Stack direction="row">
-          <Button>
-            <Typography
-              component="span"
-              variant="body1"
-              sx={{
-                fontWeight: "bold",
-              }}
-            >
-              All Tournaments
-            </Typography>
-          </Button>
-          <Button color="secondary">
-            <Typography
-              component="span"
-              variant="body1"
-              sx={{
-                fontWeight: "bold",
-              }}
-            >
-              All Tournaments
-            </Typography>
-          </Button>
-          <Button color="action">
-            <Typography
-              component="span"
-              variant="body1"
-              sx={{
-                fontWeight: "bold",
-              }}
-            >
-              All Tournaments
-            </Typography>
-          </Button>
-        </Stack>
+        <FilterTournaments />
       </Stack>
       <div>
         <div>

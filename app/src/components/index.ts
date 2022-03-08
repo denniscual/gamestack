@@ -3,3 +3,4 @@ export * from "./theme";
 export * from "./icons";
 export * from "./NavLink";
 export * from "./Button";
+export * from "./Chip";
