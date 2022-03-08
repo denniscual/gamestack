@@ -10,7 +10,9 @@ const getMatches = (req, res) => {
         });
         return Object.assign(Object.assign({}, match), { participants: participantsWithTeam, tournament: models_1.tournament.findById(match.tournament) });
     });
-    res.send(Object.assign(Object.assign({}, results), { data: updatedMatches }));
+    setTimeout(() => {
+        res.send(Object.assign(Object.assign({}, results), { data: updatedMatches }));
+    }, 1000);
 };
 exports.getMatches = getMatches;
 //# sourceMappingURL=match.controller.js.map

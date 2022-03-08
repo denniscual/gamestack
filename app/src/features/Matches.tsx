@@ -10,6 +10,8 @@ export default function Matches() {
     tournament: "ALL",
   }) as any;
 
+  const tournamentId = searchParams.get("tournament");
+
   return (
     <Stack gap={3}>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -37,8 +39,9 @@ export default function Matches() {
         >
           <Suspense fallback={<Spinner />}>
             <FilterTournaments
+              limit={5}
               onlyIcon
-              value={searchParams.get("tournament")}
+              value={tournamentId}
               onChange={(val) => setSearchParams({ tournament: val })}
             />
           </Suspense>
@@ -50,7 +53,7 @@ export default function Matches() {
           }}
         >
           <Suspense fallback={<Spinner />}>
-            <MatchList />
+            <MatchList tournamentId={tournamentId} />
           </Suspense>
         </div>
       </Stack>

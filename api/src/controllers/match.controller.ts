@@ -20,8 +20,10 @@ export const getMatches: RequestHandler = (req, res) => {
     };
   });
 
-  res.send({
-    ...results,
-    data: updatedMatches,
-  });
+  setTimeout(() => {
+    res.send({
+      ...results,
+      data: updatedMatches,
+    });
+  }, 1000);
 };

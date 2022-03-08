@@ -10,7 +10,7 @@ export interface GetMatchesResponse {
   limit: number;
   totalCount: number;
 }
-interface GetMatchesVariables {
+export interface GetMatchesVariables {
   page?: number;
   limit?: number;
   q?: string;
