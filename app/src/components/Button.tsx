@@ -26,7 +26,6 @@ export function Button({
 const useButtonStyles = makeStyles({
   button: {
     display: "flex",
-    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     padding: "8px 16px",

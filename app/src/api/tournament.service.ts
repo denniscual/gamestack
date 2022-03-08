@@ -10,7 +10,7 @@ export interface GetTournamentsResponse {
   limit: number;
   totalCount: number;
 }
-interface GetTournamentsVariables {
+export interface GetTournamentsVariables {
   page?: number;
   limit?: number;
 }

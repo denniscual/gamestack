@@ -1,8 +1,10 @@
 import { Stack, Typography } from "@mui/material";
-import FilterTournaments from "./FilterTournaments";
+import FilterTournaments, { ValueType } from "./FilterTournaments";
 import { Spinner } from "components";
+import { Suspense, useState } from "react";
 
 export default function Matches() {
+  const [activeTournament, setActiveTournament] = useState<ValueType>("ALL");
   return (
     <Stack gap={3}>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -15,16 +17,19 @@ export default function Matches() {
         >
           Live In-Play
         </Typography>
-        <FilterTournaments />
+        <Suspense fallback={<Spinner />}>
+          <FilterTournaments
+            value={activeTournament}
+            onChange={setActiveTournament}
+          />
+        </Suspense>
       </Stack>
       <div>
         <div>
           <div>Tournament filter action items</div>
           <div>Filter action items</div>
         </div>
-        <div>
-          <Spinner />
-        </div>
+        <div>Matches list</div>
       </div>
     </Stack>
   );

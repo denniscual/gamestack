@@ -5,5 +5,7 @@ import { PaginatedResults } from '../middleware';
 
 export const getTournaments: RequestHandler = (req, res) => {
   const results = (res as any).paginatedResults as PaginatedResults<Tournament>;
-  res.send(results);
+  setTimeout(() => {
+    res.send(results);
+  }, 1000);
 };
