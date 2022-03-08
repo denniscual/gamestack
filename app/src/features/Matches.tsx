@@ -3,13 +3,13 @@ import FilterTournaments, { ValueType } from "./FilterTournaments";
 import { Spinner } from "components";
 import { Suspense } from "react";
 import { useSearchParams } from "react-router-dom";
+import MatchList from "./MatchList";
 
 export default function Matches() {
   const [searchParams, setSearchParams] = useSearchParams({
     tournament: "ALL",
   }) as any;
 
-  console.log(searchParams.get("tournament"));
   return (
     <Stack gap={3}>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -29,13 +29,31 @@ export default function Matches() {
           />
         </Suspense>
       </Stack>
-      <div>
-        <div>
-          <div>Tournament filter action items</div>
+      <Stack gap={2}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Suspense fallback={<Spinner />}>
+            <FilterTournaments
+              onlyIcon
+              value={searchParams.get("tournament")}
+              onChange={(val) => setSearchParams({ tournament: val })}
+            />
+          </Suspense>
           <div>Filter action items</div>
+        </Stack>
+        <div
+          style={{
+            width: "100%",
+          }}
+        >
+          <Suspense fallback={<Spinner />}>
+            <MatchList />
+          </Suspense>
         </div>
-        <div>Matches list</div>
-      </div>
+      </Stack>
     </Stack>
   );
 }
