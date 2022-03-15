@@ -31,14 +31,6 @@ This project is intended to be used with the latest Active LTS release of [Node.
 
 To start, just click the **[Use template][repo-template-action]** link (or the green button). Start adding your code in the `src` and unit tests in the `__tests__` directories.
 
-### Clone repository
-
-To clone the repository, use the following commands:
-
-```sh
-git clone https://github.com/jsynowiec/node-typescript-boilerplate
-cd node-typescript-boilerplate
-npm install
 ```
 
 ### Download latest release
@@ -59,24 +51,6 @@ unzip node-typescript-boilerplate.zip && rm node-typescript-boilerplate.zip
 - `lint` - lint source files and tests,
 - `test` - run tests,
 - `test:watch` - interactive watch mode to automatically re-run tests
-
-## Additional Informations
-
-### Why include Volta
-
-[Volta][volta]’s toolchain always keeps track of where you are, it makes sure the tools you use always respect the settings of the project you’re working on. This means you don’t have to worry about changing the state of your installed software when switching between projects. For example, it's [used by engineers at LinkedIn][volta-tomdale] to standardize tools and have reproducible development environments.
-
-I recommend to [install][volta-getting-started] Volta and use it to manage your project's toolchain.
-
-### Writing tests in JavaScript
-
-Writing unit tests in TypeScript can sometimes be troublesome and confusing. Especially when mocking dependencies and using spies.
-
-This is **optional**, but if you want to learn how to write JavaScript tests for TypeScript modules, read the [corresponding wiki page][wiki-js-tests].
-
-## Backers & Sponsors
-
-Support this project by becoming a [sponsor][sponsor].
 
 ## License
 
